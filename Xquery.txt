@@ -1,0 +1,111 @@
+Henri Vekuna
+
+a)
+query:
+for $laji in lintukirja//laji
+  let $nimi := $laji//nimi/text()
+  let $tuntomerkit := $laji//tuntomerkit/text()
+return <tulos>{$nimi,":",$tuntomerkit}</tulos>
+
+<tulos>Lehtopöllö:Siivet leveät ja pyöreäpäiset, pää suuri ja pyöreä.</tulos>
+<tulos>Lapinpöllö:Kaula on paksu ja pää suhteessa suuri ja pyöreä ja pää näyttää sivulta kuin kirveellä halkaistulta.</tulos>
+<tulos>Käpytikka:Alaperä syvän oranssinpunainen, rajautuu jyrkästi valkoiseen vatsaan, viiruttomat ja hartialla iso soikionmuotoinen valkoinen laikku</tulos>
+
+
+b)
+for $suku in lintukirja//suku
+  let $nimi := $suku/s_suku
+  order by $suku/l_suku/text() ascending
+return <tulos>{$nimi}</tulos>
+
+<tulos>
+  <s_suku>Tikat</s_suku>
+</tulos>
+<tulos>
+  <s_suku>Pöllöt</s_suku>
+</tulos>
+
+
+c)
+for $laji in lintukirja//laji
+  let $nimi := $laji//nimi/text()
+  let $tuntomerkit := $laji//tuntomerkit/text()
+  let $aanet := $laji/aanet//aikuinen
+  for $aani in $aanet
+     where contains($aani,"ho")
+return <tulos>{$nimi,":",$tuntomerkit}</tulos>
+
+result:
+<tulos>Lehtopöllö:Siivet leveät ja pyöreäpäiset, pää suuri ja pyöreä.</tulos>
+
+
+d)
+query:
+let $lintukirja := /lintukirja[contains(@lahde,"Mullarney")]
+return $lintukirja
+
+result:
+<lintukirja lahde="perustuu_Mullarneyn_et_al teokseen">
+  <esipuhe>Tässä kirjassa esitellään Euroopan tunnetuimia lintuja.</esipuhe>
+  <suku sivu="206">
+    <s_suku>Pöllöt</s_suku>Petolintuja, joista suurin osa on yöaktiivisia. Pyydystävät saaliin yllätyshyökkäyksen turvin.<l_suku>Strigiformes</l_suku>
+    <lajit>
+      <laji>
+        <nimi>Lehtopöllö</nimi>
+        <pituus>37-43 cm</pituus>
+        <siipivali>81-96 cm</siipivali>
+        <tuntomerkit>Siivet leveät ja pyöreäpäiset, pää suuri ja pyöreä.</tuntomerkit>
+        <aanet>
+          <aikuinen>Hooooouh…..ho’ho’ho’hooooouh</aikuinen>
+          <aikuinen>o’o’o’o’ …</aikuinen>
+          <poikanen>psi-ep</poikanen>
+        </aanet>
+      </laji>
+      <laji>
+        <nimi>Lapinpöllö</nimi>
+        <pituus>59-68 cm</pituus>
+        <siipivali>128-148 cm</siipivali>
+        <tuntomerkit>Kaula on paksu ja pää suhteessa suuri ja pyöreä ja pää näyttää sivulta kuin kirveellä halkaistulta.</tuntomerkit>
+        <aanet>
+          <aikuinen s_puoli="uros">grrok- grrok-grrok</aikuinen>
+          <aikuinen s_puoli="naaras">tseipp- tseipp- tseipp</aikuinen>
+          <poikanen>psiepp- psiepp</poikanen>
+        </aanet>
+      </laji>
+    </lajit>
+  </suku>
+  <suku sivu="226">
+    <s_suku>Tikat</s_suku>Nokka voimakas naskalimainen tai talttamainen.<l_suku>Picidea</l_suku>
+    <lajit>
+      <laji>
+        <nimi>Käpytikka</nimi>
+        <pituus>23-26 cm</pituus>
+        <siipivali>38-44 cm</siipivali>
+        <tuntomerkit>Alaperä syvän oranssinpunainen, rajautuu jyrkästi valkoiseen vatsaan, viiruttomat ja hartialla iso soikionmuotoinen valkoinen laikku</tuntomerkit>
+        <aanet>
+          <aikuinen>kik</aikuinen>
+          <aikuinen>tjrett- tjrett- tjrett-…</aikuinen>
+          <poikanen>vivivivi…</poikanen>
+        </aanet>
+      </laji>
+    </lajit>
+  </suku>
+</lintukirja>
+
+
+e)
+query:
+for $suku in lintukirja/suku
+ for $laji in $suku/lajit/laji
+   return <tulos>
+     {
+     if($suku/s_suku="Pöllöt")
+       then  ($laji/nimi/text()," ",$laji/siipivali/text())
+       else ($laji/nimi/text()," ",$laji/pituus/text())}
+     </tulos>
+ 
+result: 
+ <tulos>Lehtopöllö 81-96 cm</tulos>
+<tulos>Lapinpöllö 128-148 cm</tulos>
+<tulos>Käpytikka 23-26 cm</tulos>
+

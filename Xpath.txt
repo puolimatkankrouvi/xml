@@ -1,0 +1,23 @@
+Henri Vekuna
+Xpath -kyselyitä. Talvikalastus -xml-tiedostosta, joka ei ole githubissa.
+
+a)
+Kaikkien kalojen painojen summa
+sum(//paino)
+6900
+
+b)
+Täydenkuun aikaan saatujen kalojen lkm
+talvikalastus/viikko[./kuu/text()="taysi"]/saalis/count(kala)
+2
+
+c)
+Kahdella verkolla saatujen kalojen lkm
+count(/talvikalastus/viikko[@verkkoja=2]/saalis/kala)
+5
+
+d)
+Alle 15 cm syvyydestä saatujen kalojen lkm
+talvikalastus/count(viikko/saalis/kala/syvyys[.<15])
+6
+
