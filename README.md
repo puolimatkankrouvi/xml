@@ -1,2 +1,2 @@
-Xpath ja Xquery -kyselyitä
-kaavio.xml, xml-tiedosto lehtiartikkeleista 
+Xpath ja Xquery -kyselyitä tekstitiedostoissa
+kaavio.xml on xml-tiedosto nimeltä lehtiartikkeleista 
