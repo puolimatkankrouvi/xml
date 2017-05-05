@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="catalog.xsd">
+  <title>Outdoor products</title>
+  <introduction>
+    <para>We offer a great variety of basic stuff for mountaineering
+          such as ropes, harnesses and tents.</para>
+    <para>Our shop is proud for its large number of available
+      sleeping bags.</para>
+  </introduction>
+  <product id="x-223">
+    <title>Multi freezing bag  Nightmare camper</title>
+    <description>
+      <para>You will feel comfortable till  minus 20 degrees - At
+            least if you are a penguin or a polar bear.</para>
+    </description>
+  </product>
+  <product id="r-334">
+    <title>Rope 40m</title>
+    <description>
+      <para>Excellent for indoor climbing.</para>
+    </description>
+  </product>
+</catalog>
